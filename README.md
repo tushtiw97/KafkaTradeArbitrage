@@ -6,7 +6,7 @@ Have implemented the following functionalities:
 
 # Setup
 
-1. [Setup kafka on the machine] (https://github.com/python-constraint/python-constraint)
+1. [Setup](https://github.com/python-constraint/python-constraint) kafka on the machine
 
 2. Install pip requirements `pip install -r requirements.txt`
 
