@@ -24,3 +24,29 @@ and [nsetools](https://nsetools.readthedocs.io/en/latest/) python libraries.
 4. Create topic SEC_MKT_DATA
 
 5. Run consumer_sec_mkt_data.py first then producer_sec_mkt_data.py
+
+---------------------------------------------------------------------------
+
+For Java examples
+
+Pre-requisites: 
+1) The producer and consumer run bi-directional communication despite the unidirectional communication restriction placed by Kafka by default.
+
+2) The topics used for testing purposes are "test" and "test1" respectively.
+
+3) The producer and consumer codes have functionality to act as consumer and producer, respectively, as well depending on certain conditions. These conditions, for the time being, include the producer sending "raise arbitrage" message on topic "test" and the consumer sending "client wants to raise an arbitrage" on topic "test1" upon receipt of the aforementioned "raise arbitrage" message from the producer. 
+
+4) The messages mentioned above can be replaced with the corresponding business logic on both the sides.
+
+Setup:
+1) Run the spring boot application "TestApp".
+
+2) Open localhost:8080/runProducer. The method to start the producer is executed, and the producer starts. The same is visible on console of the IDE.
+
+3) Run the Java application "KafkaConsumer" and enter "test" as the first input, and "0" as the input for the group ID
+
+4) Switch back to TestApp. You should be seeing an "Enter message : " on the console of the IDE by now.
+
+That's it. Your producer and consumer have been set up. You can test by sending messages from the producer, and check it's receipt using the consumer.
+
+PS: try sending "raise arbitrage" message from the producer, and check it's immediate response on the producer again. Should be "client wants to raise an arbitrage". If not, press enter on the console of the producer app, and you should be able to see the receipt of the response.
