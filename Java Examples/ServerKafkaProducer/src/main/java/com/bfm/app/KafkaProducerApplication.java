@@ -65,7 +65,7 @@ public class KafkaProducerApplication implements CommandLineRunner{
 			if(i%7 == 0) {
 				Random random = new Random();
 				try {
-					Thread.sleep(5000 + (random.nextInt(5) * 1000));
+					Thread.sleep(15000 + (random.nextInt(5) * 1000));
 				} catch (Exception e) {
 					System.out.println("Cannot pause thread");
 				}
