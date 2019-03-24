@@ -72,7 +72,7 @@ public class KafkaProducerApplication implements CommandLineRunner{
 			}
 			
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>("test", jsonObject.toString());
+			ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>("SEC_MKT_DATA", jsonObject.toString());
 			producer.send(producerRecord);
 			System.out.println("Sent : " + jsonObject.toString());
 		}
