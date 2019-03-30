@@ -63,7 +63,7 @@ public class ServerKafkaConsumerApplication implements CommandLineRunner{
 		} catch(WakeupException e) {
 			System.out.println("Stopping consumer");
 		}
-		
+		consumer.close();
 	}
 
 }
