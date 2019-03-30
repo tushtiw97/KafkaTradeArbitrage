@@ -1,0 +1,104 @@
+<html>
+<head>
+  <style>
+  div.header{
+    background-color:black;
+    padding:20px;
+    text-align: center;
+  }
+  h1{
+    color:#F5D9E0;
+  }
+  body { background-color:#F5D9E0;}
+  div.box{
+    height: 500px;
+    width: 1000px;
+    background-color:#E7EAEC;
+    margin-top:2%;
+    margin-right:2%;
+    margin-left:2%;
+    margin-bottom:3%;
+    border-radius: 25px;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     overflow: scroll;
+  }
+  #Arbitrage {
+    font-family:Verdana, Geneva, sans-serif;
+    border-collapse:collapse;
+    width:100%;
+  }
+ 
+  #Arbitrage td, #Arbitrage th {
+    padding: 15px;
+    text-align:left;
+    border-bottom: 1px solid #ddd;
+  }
+ 
+  #Arbitrage tr:nth-child(even) {background-color:#D6DCE3;}
+  #Arbitrage tr:nth-child(odd) {background-color:#D1D9E1;}
+  #Arbitrage tr:hover {background-color:#C9D0DA;}
+  #Arbitrage th{background-color:#AEB9C7;}
+ 
+  </style>
+  <script>
+	  function loadDoc(){
+		  var xml = new XMLHttpRequest();
+		  xml.onreadystatechange = function(){
+			  if(this.readyState == 4 && this.status == 200){
+				  alert(this.responseText);
+				  var arbitrages = JSON.parse(this.responseText);
+				  alert(arbitrages);
+				  var text = "<table id=Arbitrage>";
+				  text += "<tr><th>ORDER_TIME</th><th>Security Code</th><th>BUY_MKT</th><th>BUY_PRICE</th><th>SELL_MKT</th><th>SELL_PRICE</th><th>ORDER_QTY</th></tr>";
+				  for(var i=0; i<arbitrages.length; i++){
+					  text += "<tr><td>" + arbitrages[i]["orderTime"] + "</td><td>" + arbitrages[i]["securityCode"] + "</td><td>" + arbitrages[i]["buyMkt"] + "</td><td>" + arbitrages[i]["buyPrice"] + "</td><td>" + arbitrages[i]["sellMkt"] + "</td><td>" + arbitrages[i]["sellPrice"] + "</td><td>" + arbitrages[i]["orderQty"] + "</td></tr>";
+				  }
+				  text += "</table>";
+				  document.getElementsByClassName("box")[0].innerHTML = text;
+			  }
+		  };
+		  xml.open("GET", "/getArbitrage", true);
+		  xml.send();
+	  }
+  </script>
+</head>
+<body>
+<div class="header">
+<h1>
+Arbitrage Trade
+</h1>
+</div>
+  <div class=box>
+  <table id=Arbitrage>
+    <tr>
+      <th>ORDER_TIME</th>
+      <th>Security Code</th>
+      <th>BUY_MKT</th>
+      <th>BUY_PRICE</th>
+      <th>SELL_MKT</th>
+      <th>SELL_PRICE</th>
+      <th>ORDER_QTY</th>
+    </tr>
+    <tr>
+      <td>2:05:00</td>
+      <td>123456</td>
+      <td>BSE</td>
+      <td>$ 2.01</td>
+      <td>NSE</td>
+      <td>$ 4.00</td>
+      <td>100</td>
+    </tr>
+     <tr>
+      <td>09:05:00</td>
+      <td>123456</td>
+      <td>BSE</td>
+      <td>$ 2.01</td>
+      <td>NSE</td>
+      <td>$ 4.00</td>
+      <td>100</td>
+    </tr>
+  </table>
+  </div>
+  <button onclick="loadDoc()">Load Arbitrage</button>
+</body>
+</html>

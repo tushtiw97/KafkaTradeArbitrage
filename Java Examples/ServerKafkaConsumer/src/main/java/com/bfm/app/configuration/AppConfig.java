@@ -2,10 +2,14 @@ package com.bfm.app.configuration;
 
 import java.util.Properties;
 
+import javax.sql.DataSource;
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
 public class AppConfig {
@@ -21,6 +25,22 @@ public class AppConfig {
 		properties.put(ConsumerConfig.CLIENT_ID_CONFIG, "ServerConsumer");
 		
 		return new KafkaConsumer<String, String>(properties);
+	}
+	
+	@Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/kafka");
+		dataSource.setUsername("root");
+		dataSource.setPassword("Tushar.1997");
+		
+		return dataSource;
+	}
+	
+	@Bean
+	public JdbcTemplate jdbcTemplate() {
+		return new JdbcTemplate(dataSource());
 	}
 	
 }
