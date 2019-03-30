@@ -22,7 +22,7 @@ public class AppConfig {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/kafka");
 		dataSource.setUsername("root");
-		dataSource.setPassword("Tushar.1997");
+		dataSource.setPassword("password");
 		
 		return dataSource;
 	}
